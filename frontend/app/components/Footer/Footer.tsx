@@ -1,16 +1,19 @@
 import Link from 'next/link';
+import { Menu, MenuItem } from '@wa/common-ui';
 
 export const Footer = () => {
   return (
-    <div className="bg-gray-300 text-stone-900 p-4">
-      <ul className="flex">
-        <li className="mr-4">
-          <Link href="/">Home</Link>
-        </li>
-        <li className="mr-4">
-          <Link href="/about">About</Link>
-        </li>
-      </ul>
+    <div className="mt-auto bg-slate-900 text-white">
+      <div className="container mx-auto p-4">
+        <Menu>
+          <MenuItem>
+            <Link href="/">Home</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link href="/about">About</Link>
+          </MenuItem>
+        </Menu>
+      </div>
     </div>
   );
 };

@@ -4,6 +4,8 @@ import { Button, Input } from '@wa/common-ui';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { toast } from 'react-toastify';
+
 import { api } from '../../config/api';
 
 const validationSchema = z
@@ -45,11 +47,14 @@ export const AddOfferForm = () => {
     resolver: zodResolver(validationSchema),
   });
 
-  const sendForm: SubmitHandler<FormValues> = (data) => {
+  const sendForm: SubmitHandler<FormValues> = async (data) => {
     console.log(data);
-    api.post('/api/offers', data);
-    // TODO: send data to backend
-    // /api/offer
+    try {
+      await api.post('/api/offers', data);
+      toast.success('Offer was added successfully 🎉');
+    } catch {
+      toast.error('Something went wrong 😥');
+    }
   };
 
   return (
@@ -66,20 +71,24 @@ export const AddOfferForm = () => {
         {...register('email')}
         error={errors.email}
       />
-      <Input
-        label="Salary from"
-        type="number"
-        {...register('salary_from', { valueAsNumber: true })}
-        defaultValue={0}
-        error={errors.salary_from}
-      />
-      <Input
-        label="Salary to"
-        type="number"
-        {...register('salary_to', { valueAsNumber: true })}
-        defaultValue={0}
-        error={errors.salary_to}
-      />
+      <div className="flex">
+        <Input
+          label="Salary from"
+          type="number"
+          {...register('salary_from', { valueAsNumber: true })}
+          defaultValue={0}
+          error={errors.salary_from}
+          className="w-1/2"
+        />
+        <Input
+          label="Salary to"
+          type="number"
+          {...register('salary_to', { valueAsNumber: true })}
+          defaultValue={0}
+          error={errors.salary_to}
+          className="w-1/2"
+        />
+      </div>
       <Button label="Submit" type="submit" />
     </form>
   );

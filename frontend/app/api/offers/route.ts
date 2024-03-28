@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   // const data = request.body;
   const data: FormValues = await request.json();
 
-  await db.jobOffer.create({
+  const offer = await db.jobOffer.create({
     data: {
       title: data.title,
       description: data.description,
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       salary_to: data.salary_to,
     },
   });
-  console.log(data);
+  console.log({ data, offer });
 
-  return NextResponse.json({ status: 'ok' });
+  return NextResponse.json(offer);
 }

@@ -1,4 +1,7 @@
 import { ClerkProvider } from '@clerk/nextjs';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Footer } from './components/Footer';
 import { Menu } from './components/Menu';
 import './global.css';
@@ -20,12 +23,13 @@ export default function RootLayout({ children }: Props) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.className} h-full`}>
-          <div className="container m-auto">
+        <body className={`${inter.className}`}>
+          <div className="flex flex-col h-screen">
             <Menu />
-            <div className="h-full p-4">{children}</div>
+            <div className="container mx-auto p-6">{children}</div>
             <Footer />
           </div>
+          <ToastContainer />
         </body>
       </html>
     </ClerkProvider>

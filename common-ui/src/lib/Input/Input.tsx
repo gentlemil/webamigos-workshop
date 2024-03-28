@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import {
   forwardRef,
   type ForwardedRef,
@@ -14,20 +14,29 @@ type Props = {
 } & ComponentPropsWithRef<'input'>;
 
 export const Input = forwardRef(
-  ({ label, error, ...rest }: Props, ref: ForwardedRef<HTMLInputElement>) => {
+  (
+    { label, error, className, ...rest }: Props,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
     // const id = nanoid();
     return (
       <div className="my-2">
-        <label htmlFor={label} className="mr-4">
+        <label
+          htmlFor={label}
+          className="block text-sm font-medium leading-6 text-gray-900"
+        >
           {label}
         </label>
         <input
           id={label}
           ref={ref}
-          className={classMerge('border rounded-sm border-slate-900')}
+          className={classMerge(
+            'block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:wa-blue sm:text-sm sm:leading-6',
+            className
+          )}
           {...rest}
         />
-        {error && <p className="text-rose-500">{error.message}</p>}
+        {error && <p className="text-red-500">{error.message}</p>}
       </div>
     );
   }

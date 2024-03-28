@@ -1,7 +1,9 @@
+import { Header } from "@wa/common-ui";
+
 export default async function AboutPage() {
   return (
     <div>
-      <h1>About</h1>
+      <Header>About</Header>
     </div>
   );
 }

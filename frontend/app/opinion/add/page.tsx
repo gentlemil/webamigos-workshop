@@ -1,9 +1,10 @@
+import { Header } from '@wa/common-ui';
 import { AddOpinionForm } from './AddOpinionForm';
 
 export default async function AddOpinion() {
   return (
     <div>
-      <h1>Add Opinion</h1>
+      <Header>Add Opinion</Header>
       <AddOpinionForm />
     </div>
   );
