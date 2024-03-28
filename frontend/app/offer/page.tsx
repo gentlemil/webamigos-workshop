@@ -1,4 +1,5 @@
 import db from '@wa/prisma';
+import Link from 'next/link';
 
 export default async function Offer() {
   const offers = await db.jobOffer.findMany({
@@ -11,7 +12,9 @@ export default async function Offer() {
       <ul>
         {offers.map((offer) => (
           <li key={offer.id}>
+            <Link href={`/offer/${offer.id}`}>
             {offer.title} - {offer.description}
+            </Link>
           </li>
         ))}
       </ul>
