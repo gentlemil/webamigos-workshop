@@ -21,7 +21,9 @@ type Props = Readonly<{
 
 export default function RootLayout({ children }: Props) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    >
       <html lang="en">
         <body className={`${inter.className}`}>
           <div className="flex flex-col h-screen">
