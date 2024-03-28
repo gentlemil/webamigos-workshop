@@ -18,6 +18,9 @@ export const Menu = () => {
           <Link href="/contact">Contact</Link>
         </li>
         <li className="mr-4">
+          <Link href="/offer">Offers</Link>
+        </li>
+        <li className="mr-4">
           <Link href="/offer/add">Create offer</Link>
         </li>
         <li className="mr-4">
