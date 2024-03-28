@@ -20,6 +20,9 @@ export const Menu = () => {
         <li className="mr-4">
           <Link href="/offer/add">Create offer</Link>
         </li>
+        <li className="mr-4">
+          <Link href="/opinion">Opinion</Link>
+        </li>
       </ul>
     </div>
   );

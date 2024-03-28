@@ -9,7 +9,7 @@
     "@nestjs/common": "^10.0.2",
     "@nestjs/core": "^10.0.2",
     "@nestjs/platform-express": "^10.0.2",
-    "axios": "^1.0.0",
+    "axios": "^1.6.8",
     "clsx": "^2.0.0",
     "nanoid": "^5.0.4",
     "next": "^13.5.6",
