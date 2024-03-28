@@ -27,6 +27,12 @@
       "options": {
         "cwd": "prisma/src/lib"
       }
+    },
+    "migrate-dev": {
+      "command": "prisma migrate deploy",
+      "options": {
+        "cwd": "prisma/src/lib"
+      }
     }
   },
   "tags": []
