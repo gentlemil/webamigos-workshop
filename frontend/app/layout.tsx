@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs';
 import { Footer } from './components/Footer';
 import { Menu } from './components/Menu';
 import './global.css';
@@ -17,14 +18,16 @@ type Props = Readonly<{
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} h-full`}>
-        <div className="container m-auto">
-          <Menu />
-          <div className="h-full p-4">{children}</div>
-          <Footer />
-        </div>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${inter.className} h-full`}>
+          <div className="container m-auto">
+            <Menu />
+            <div className="h-full p-4">{children}</div>
+            <Footer />
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

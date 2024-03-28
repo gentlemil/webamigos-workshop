@@ -1,5 +1,4 @@
 import { Button } from '@wa/common-ui';
-
 export default async function Index() {
   return (
     <div>
