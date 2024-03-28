@@ -1,7 +1,7 @@
 export default async function ContactPage() {
   return (
     <div>
-      <h1>contact page</h1>
+      <h1>Contact</h1>
     </div>
   );
 }
