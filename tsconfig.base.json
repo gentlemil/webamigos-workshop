@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wa/common-ui": ["common-ui/src/index.ts"]
+      "@wa/common-ui": ["common-ui/src/index.ts"],
+      "@wa/prisma": ["prisma/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
