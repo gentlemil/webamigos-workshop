@@ -1,12 +1,14 @@
 'use client';
 
-import { Button, Input } from '@wa/common-ui';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { Button, Input } from '@wa/common-ui';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { z } from 'zod';
 
 import { api } from '../../config/api';
+import { useRef, useTransition } from 'react';
 
 const validationSchema = z
   .object({
@@ -28,14 +30,6 @@ const validationSchema = z
     message: 'Salary to must be greater than salary from',
   });
 
-// type FormValues = {
-//   title: string;
-//   description: string;
-//   email: string;
-//   salary_from: number;
-//   salary_to: number;
-// };
-
 type FormValues = z.infer<typeof validationSchema>;
 
 export const AddOfferForm = () => {
@@ -47,11 +41,17 @@ export const AddOfferForm = () => {
     resolver: zodResolver(validationSchema),
   });
 
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+
   const sendForm: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
+    if (submitButtonRef.current ) submitButtonRef.current.disabled = true;
     try {
       await api.post('/api/offers', data);
       toast.success('Offer was added successfully 🎉');
+      startTransition(() => router.push('/offer'));
+      startTransition(() => router.refresh());
     } catch {
       toast.error('Something went wrong 😥');
     }
@@ -59,6 +59,7 @@ export const AddOfferForm = () => {
 
   return (
     <form onSubmit={handleSubmit(sendForm)}>
+      {isPending && <p>Loading...</p>}
       <Input label="Title" {...register('title')} error={errors.title} />
       <Input
         label="Description"
@@ -89,7 +90,12 @@ export const AddOfferForm = () => {
           className="w-1/2"
         />
       </div>
-      <Button label="Submit" type="submit" />
+      <Button
+        ref={submitButtonRef}
+        label="Submit"
+        type="submit"
+        disabled={isPending}
+      />
     </form>
   );
 };

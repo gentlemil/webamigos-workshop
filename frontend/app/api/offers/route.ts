@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import db from '@wa/prisma';
 import { Currency } from '@prisma/client';
+import { revalidatePath } from 'next/cache';
+import db from '@wa/prisma';
 
 type FormValues = {
   title: string;
@@ -24,7 +25,7 @@ export async function POST(request: Request) {
       salary_currency: 'EUR',
     },
   });
-  console.log({ data, offer });
+  revalidatePath('/offer', 'page');
 
   return NextResponse.json(offer);
 }
