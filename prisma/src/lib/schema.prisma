@@ -7,6 +7,13 @@ datasource db {
   url       = env("DATABASE_URL")
 }
 
+enum Currency {
+  EUR
+  USD
+  GBP
+}
+
+
 model JobOffer {
   id          String   @id @default(uuid())
   title       String
@@ -15,15 +22,7 @@ model JobOffer {
   location    String?
   salary_from Int
   salary_to   Int
+  salary_currency Currency @default(EUR)
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
-
-// model Opinion {
-//   id          String   @id @default(uuid())
-//   name       String
-//   email String
-//   company     String?
-//   location    String?
-
-// }
