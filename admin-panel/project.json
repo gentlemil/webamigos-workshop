@@ -13,11 +13,9 @@
       },
       "configurations": {
         "development": {
-          "mode": "development"
+          "outputPath": "admin-panel"
         },
-        "production": {
-          "mode": "production"
-        }
+        "production": {}
       }
     },
     "serve": {
