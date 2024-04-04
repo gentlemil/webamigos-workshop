@@ -11,3 +11,7 @@ export const offersList = async () => {
     throw new Error('Error fetching offers');
   }
 };
+
+export const activateOffer = async (id: string) => {
+  return await api.patch(`/offers/${id}/activate`);
+};

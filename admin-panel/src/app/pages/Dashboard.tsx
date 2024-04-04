@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { Header } from '@wa/common-ui';
-import { offersList } from '../services/offers';
+import { Button, Header } from '@wa/common-ui';
+import { offersList, activateOffer } from '../services/offers';
 
 export const DashboardPage = () => {
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['dashboard'],
     queryFn: offersList,
   });
@@ -18,6 +18,12 @@ export const DashboardPage = () => {
     return <div>Error</div>;
   }
 
+  const handleActivate =
+    (id: string) => async (_event: React.MouseEvent<HTMLButtonElement>) => {
+      await activateOffer(id);
+      await refetch();
+    };
+
   return (
     <div>
       <Header>Dashboard</Header>
@@ -27,6 +33,12 @@ export const DashboardPage = () => {
             <div key={offer.id}>
               <p>{offer.title}</p>
               <p>{offer.description}</p>
+              <p>is active: {offer.is_active ? 'yes' : 'no'}</p>
+              <Button
+                label="Confirm"
+                onClick={handleActivate(offer.id)}
+              ></Button>
+              <Button label="Remove"></Button>
             </div>
           ))}
       </div>

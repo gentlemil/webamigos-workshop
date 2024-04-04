@@ -22,4 +22,15 @@ export class OffersService {
       include: { Company: true },
     });
   }
+
+  activateOffer(id: string) {
+    return this.db.jobOffer.update({
+      where: {
+        id,
+      },
+      data: {
+        is_active: true,
+      },
+    });
+  }
 }

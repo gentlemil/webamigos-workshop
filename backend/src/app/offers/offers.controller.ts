@@ -4,6 +4,7 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  Patch,
 } from '@nestjs/common';
 import { OffersService } from './offers.service';
 
@@ -30,5 +31,15 @@ export class OffersController {
       throw new HttpException('Offer not found', HttpStatus.NOT_FOUND);
     }
     return { offer };
+  }
+
+  @Patch(':id/activate') // localhost:3000/api/offers/1/activate
+  async activateOffer(@Param('id') id: string) {
+    try {
+      const offer = await this.offersService.activateOffer(id);
+      return { offer };
+    } catch (error) {
+      throw new HttpException('Offer not found', HttpStatus.NOT_FOUND);
+    }
   }
 }
