@@ -13,9 +13,11 @@
       },
       "configurations": {
         "development": {
-          "outputPath": "admin-panel"
+          "mode": "development"
         },
-        "production": {}
+        "production": {
+          "mode": "production"
+        }
       }
     },
     "serve": {
@@ -36,6 +38,14 @@
         }
       }
     },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "admin-panel:build",
+        "port": 4800
+      }
+    },
+
     "preview": {
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
