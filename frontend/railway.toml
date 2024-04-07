@@ -1,0 +1,10 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npx nx run prisma:generate-types && npx nx run frontend:build:production"
+watchPatterns = ["/frontend"]
+
+[deploy]
+startCommand = "npx nx run prisma:migrate-deploy && npx nx run frontend:serve:production"
+healthcheckPath = "/api/hello"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"

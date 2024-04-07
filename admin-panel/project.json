@@ -45,7 +45,6 @@
         "port": 4800
       }
     },
-
     "preview": {
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",

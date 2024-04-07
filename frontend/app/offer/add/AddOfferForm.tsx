@@ -2,7 +2,7 @@
 
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input } from '@wa/common-ui';
+import { Button, Input, Textarea } from '@wa/common-ui';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
@@ -46,7 +46,7 @@ export const AddOfferForm = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   const sendForm: SubmitHandler<FormValues> = async (data) => {
-    if (submitButtonRef.current ) submitButtonRef.current.disabled = true;
+    if (submitButtonRef.current) submitButtonRef.current.disabled = true;
     try {
       await api.post('/api/offers', data);
       toast.success('Offer was added successfully 🎉');
@@ -61,7 +61,7 @@ export const AddOfferForm = () => {
     <form onSubmit={handleSubmit(sendForm)}>
       {isPending && <p>Loading...</p>}
       <Input label="Title" {...register('title')} error={errors.title} />
-      <Input
+      <Textarea
         label="Description"
         {...register('description')}
         error={errors.description}
